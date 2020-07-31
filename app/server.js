@@ -8,6 +8,7 @@ const app = express();
 
 /**EJS magic - It's a must */
 app.set("view engine", "ejs");
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose.connect("mongodb://localhost:27017/items", {
@@ -21,10 +22,14 @@ const item = new Item({
   name: "vasile"
 });
 item.save();
+
+//CORS SCRIPT
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   next();
 });
+//////
+
 app.get("/api/test", function(req, res) {
   Item.find()
     .sort({ date: -1 })
