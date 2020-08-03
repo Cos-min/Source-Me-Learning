@@ -29,6 +29,9 @@ app.use((req, res, next) => {
   next();
 });
 //////
+app.get("/api/home", function(req, res) {
+  res.json("/api/home");
+});
 
 app.get("/api/test", function(req, res) {
   Item.find()
